@@ -54,5 +54,3 @@
 <p align="center">
   <sub>Metrics 每周日自动刷新 · 由 <a href="https://github.com/lowlighter/metrics">lowlighter/metrics</a> 生成</sub>
 </p>
-
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
