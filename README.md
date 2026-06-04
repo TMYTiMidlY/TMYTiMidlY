@@ -37,8 +37,11 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2" align="center">
+    <td align="center">
       <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" />
+    </td>
+    <td align="center">
+      <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" />
     </td>
   </tr>
   <tr>
