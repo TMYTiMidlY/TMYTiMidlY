@@ -7,9 +7,6 @@
   <a href="https://iai-ustc-quantum.github.io">
     <img alt="Team Site" src="https://img.shields.io/badge/Team_Site-iai--ustc--quantum.github.io-4D6AE4?style=flat-square&logo=githubpages" />
   </a>
-  <a href="https://iai.ustc.edu.cn">
-    <img alt="IAI USTC" src="https://img.shields.io/badge/Institute-IAI_USTC-9333EA?style=flat-square" />
-  </a>
 </p>
 
 - 🎓 中国科学技术大学（USTC）· **未来技术学院** 博士研究生
