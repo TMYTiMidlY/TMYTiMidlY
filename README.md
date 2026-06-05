@@ -20,31 +20,29 @@
 - 🤖 **AI Agent / MCP 工程**：[portal-mcp-server](https://github.com/TMYTiMidlY/portal-mcp-server)（Agent-first SSH 编排）、[skills](https://github.com/TMYTiMidlY/skills)（个人 Agent skill 体系）、[TimelyBee](https://github.com/TMYTiMidlY/TimelyBee)（Pydantic AI 多渠道 Agent 框架）
 - 🧮 **科学计算工具链**：[petsc4py-stubs](https://github.com/TMYTiMidlY/petsc4py-stubs) / [slepc4py-stubs](https://github.com/TMYTiMidlY/slepc4py-stubs)、计算物理项目
 
-### 📊 GitHub Metrics
+<br>
 
-<table>
-  <tr>
-    <td colspan="2" align="center">
-      <img src="./metrics.svg" alt="GitHub Metrics" />
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" />
-    </td>
-    <td align="center">
-      <img src="./metrics.plugin.habits.svg" alt="Coding Habits" />
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" />
-    </td>
-    <td align="center">
-      <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" />
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="./metrics.svg" alt="GitHub Metrics" width="900" />
+</p>
+
+---
+
+### 📆 提交节奏 · 代码习惯
+
+<p align="center">
+  <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" width="49%" />
+  &nbsp;
+  <img src="./metrics.plugin.habits.svg" alt="Coding Habits" width="49%" />
+</p>
+
+### 🌟 对外贡献 · 我创建的 Issue / PR
+
+<p align="center">
+  <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" width="49%" />
+  &nbsp;
+  <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="49%" />
+</p>
 
 <p align="center">
   <sub>Metrics 每周日自动刷新 · 由 <a href="https://github.com/lowlighter/metrics">lowlighter/metrics</a> 生成</sub>
