@@ -106,13 +106,16 @@ FIXED: dict[str, str] = {
 # 在 PATTERNS + FIXED 跑完后再 strip 一些冗余节点。
 # 必须在两层翻译之后，因为节点匹配用的是已经中文化的关键词。
 EXTRA_STRIPS: list[tuple[re.Pattern[str], str]] = [
-    # 删 isocalendar 内层 "贡献日历" h2（含前置 calendar icon SVG）。
-    # 外层 README 的 "📆 全年贡献日历" section 标题已经说明这是什么，
-    # 内层再来一次会让 3D 日历上方有两层标题，视觉重复。
-    # negative lookahead 保证 .* 不越过最近的 </h2>。
+    # 删 metrics 副卡内层 <h2> 标题：外层 README 的 section 子标题
+    # （📆 全年贡献日历 / 🏷️ 对外仓库贡献 / 📨 Issue 与 PR 概览）已经
+    # 描述了每张卡是什么，内层再来一次会视觉重复（尤其大字标题压在
+    # 图主体上方挤掉版面）。
+    # 用 negative lookahead 保证 .* 不越过最近的 </h2>，关键词两边都包。
     (
         re.compile(
-            r"<h2\b[^>]*>(?:(?!</h2>).)*?贡献日历\s*</h2>\s*",
+            r"<h2\b[^>]*>(?:(?!</h2>).)*?"
+            r"(贡献日历|重要外部贡献|Issue 与 PR 概览)"
+            r"(?:(?!</h2>).)*?</h2>\s*",
             re.DOTALL,
         ),
         "",

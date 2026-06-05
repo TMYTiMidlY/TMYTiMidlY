@@ -42,7 +42,7 @@
   <tr>
     <td colspan="2" align="center" valign="top">
       <strong>📨 Issue 与 PR 概览</strong><br/>
-      <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="80%" />
+      <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="60%" />
     </td>
   </tr>
 </table>
