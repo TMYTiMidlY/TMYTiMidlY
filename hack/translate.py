@@ -68,6 +68,7 @@ FIXED: dict[str, str] = {
     "Activity": "活动",
     "Community stats": "社区统计",
     "Most used languages": "常用语言",
+    "Stargazers": "Star 数",
     "Overall issues and pull requests status": "Issue 与 PR 概览",
     "From communities": "来自社区",
     "From self and collaborators": "本人与合作者",
@@ -82,6 +83,13 @@ FIXED: dict[str, str] = {
     "Pull requests": "Pull Requests",
     "On TMY&#x27;s repositories": "TMY 自己仓库中",
     "On TMY's repositories": "TMY 自己仓库中",
+    # stargazers chart labels
+    "Total stargazers": "累计 ⭐",
+    "New stargazers per day": "每日新增 ⭐",
+    "New stargazers per week": "每周新增 ⭐",
+    "New stargazers per month": "每月新增 ⭐",
+    "New stargazers per year": "每年新增 ⭐",
+    "New stargazers per hour": "每小时新增 ⭐",
     # PR/issue 状态
     "open": "开放",
     "closed": "已关闭",
