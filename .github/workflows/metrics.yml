@@ -51,14 +51,14 @@ jobs:
           # repo owner=null（账号已注销）时报 TypeError: Cannot read 'login'
           # of null，导致整个主卡 step 崩溃。等上游修后再加回。
 
-          # Stars 增长曲线（纯 GraphQL，代价低）
-          plugin_stargazers: yes
-          plugin_stargazers_charts_type: graph
+          # 🚫 plugin_stargazers 移除：当 star 数偏少时（个位~百位），
+          # 累计曲线几乎是一条平线，两张全宽图各占一大段版面但信息量极低；
+          # 等仓库星数显著上来后再考虑加回。
 
-          # 自己 repo 的 PR/Issue 跟进
-          plugin_followup: yes
-          plugin_followup_sections: repositories
-          plugin_followup_indepth: yes
+          # 🚫 主卡内嵌 plugin_followup(repositories) 移除：
+          # 该区块塞在右栏占了主卡近一半高度，且语义与下方独立的
+          # "🌟 对外贡献 · 我创建的 Issue / PR" section 高度重叠
+          # （都聚焦在 issue/PR 状态），删掉让主卡两栏均衡 + 去掉重复。
 
           # 关注者
           plugin_people: yes
