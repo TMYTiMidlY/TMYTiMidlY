@@ -7,6 +7,7 @@ on:
     paths:
       - ".github/workflows/metrics.yml"
       - "README.md"
+      - "hack/translate.py"
 
 permissions:
   contents: write
@@ -17,6 +18,12 @@ jobs:
     timeout-minutes: 90
 
     steps:
+      # 后续 post-process 步骤需要本地 git 仓库才能 pull / commit / push
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       # ============ 主卡片：综合统计（960px 原生hero 宽度）============
       - name: 🧬 Main metrics card
         uses: lowlighter/metrics@latest
@@ -125,3 +132,29 @@ jobs:
       # GitHub 2024-05 sunset Projects classic API。Achievements plugin
       # 仍查 user.projects 导致 GraphQL response NOT_FOUND，渲染为空图。
       # 上游多个 fix PR 都未被 merge。等谁补口了再加回。
+
+      # ============ 🇨🇳 Hack：把 SVG 文本翻译为中文 ============
+      # lowlighter/metrics 无 i18n 系统，所有 plugin 标题硬编码英文。
+      # 这一步在 metrics action 跑完（它通过 octokit API 已经把英文 SVG
+      # commit 到 remote）之后，pull 下来用正则替换文本再 commit 一次。
+      # if: always() 保证即使部分 metrics step 失败，已生成的 SVG 仍翻译。
+      - name: 🇨🇳 Translate SVGs to Chinese
+        if: always()
+        run: |
+          set -eu
+          # metrics 通过 REST API commit，本地 workspace 没更新，先拉最新
+          git fetch origin main
+          git reset --hard origin/main
+
+          python3 hack/translate.py
+
+          if [[ -z "$(git status --porcelain metrics*.svg 2>/dev/null)" ]]; then
+            echo "no SVG changes after translation"
+            exit 0
+          fi
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add metrics*.svg
+          git commit -m "i18n: 翻译 metrics SVG 文本为中文 [skip ci]"
+          git push origin main
