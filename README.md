@@ -28,20 +28,23 @@
 
 ---
 
-### 📆 全年贡献日历
-
-<p align="center">
-  <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" width="800" />
-</p>
-
 ### 🌟 对外贡献 · 我创建的 Issue / PR
 
-<p align="center">
-  <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" width="100%" />
-</p>
+<table align="center" width="100%">
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <strong>📆 全年贡献日历</strong><br/>
+      <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" width="100%" />
+    </td>
+    <td width="50%" align="center" valign="top">
+      <strong>🏷️ 对外仓库贡献</strong><br/>
+      <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" width="100%" />
+    </td>
+  </tr>
+</table>
 
 <p align="center">
-  <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="100%" />
+  <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="80%" />
 </p>
 
 <p align="center">
