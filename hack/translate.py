@@ -5,13 +5,15 @@
 git pull --rebase 拿最新 SVG，再调本脚本对所有 ``metrics*.svg`` 做替换，
 最后 commit 一次。
 
-替换分两层：
+替换分三层：
 1. ``PATTERNS``：先用正则把"数字 + 名词"模板（如 ``1886 Commits``）翻成
    中文，避免后续整词替换误伤局部子串；
 2. ``FIXED``：再把固定标题（如 ``Activity`` / ``Community stats``）替换成
    中文。包成 ``>en<`` 形式只匹配 HTML/SVG 节点内容，避免改到属性。
+3. ``EXTRA_STRIPS``：删除部分冗余 DOM 节点（如 isocalendar 内层标题，
+   因为外层 README section 标题已经描述了内容，重复展示会拥挤）。
 
-新增上游 plugin 时按需扩展两张表即可。
+新增上游 plugin 时按需扩展三张表即可。
 """
 from __future__ import annotations
 
@@ -101,12 +103,30 @@ FIXED: dict[str, str] = {
     "These metrics do not include all private contributions": "本卡未包含全部私有贡献",
 }
 
+# 在 PATTERNS + FIXED 跑完后再 strip 一些冗余节点。
+# 必须在两层翻译之后，因为节点匹配用的是已经中文化的关键词。
+EXTRA_STRIPS: list[tuple[re.Pattern[str], str]] = [
+    # 删 isocalendar 内层 "贡献日历" h2（含前置 calendar icon SVG）。
+    # 外层 README 的 "📆 全年贡献日历" section 标题已经说明这是什么，
+    # 内层再来一次会让 3D 日历上方有两层标题，视觉重复。
+    # negative lookahead 保证 .* 不越过最近的 </h2>。
+    (
+        re.compile(
+            r"<h2\b[^>]*>(?:(?!</h2>).)*?贡献日历\s*</h2>\s*",
+            re.DOTALL,
+        ),
+        "",
+    ),
+]
+
 
 def translate(text: str) -> str:
     for pat, rep in PATTERNS:
         text = re.sub(pat, rep, text)
     for en, zh in FIXED.items():
         text = re.sub(rf">\s*{re.escape(en)}\s*<", f">{zh}<", text)
+    for strip_pat, rep in EXTRA_STRIPS:
+        text = strip_pat.sub(rep, text)
     return text
 
 

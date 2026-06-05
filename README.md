@@ -26,8 +26,6 @@
   <img src="./metrics.svg" alt="GitHub Metrics" />
 </p>
 
----
-
 ### 🌟 对外贡献 · 我创建的 Issue / PR
 
 <table align="center" width="100%">
@@ -41,11 +39,13 @@
       <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" width="100%" />
     </td>
   </tr>
+  <tr>
+    <td colspan="2" align="center" valign="top">
+      <strong>📨 Issue 与 PR 概览</strong><br/>
+      <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="80%" />
+    </td>
+  </tr>
 </table>
-
-<p align="center">
-  <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="80%" />
-</p>
 
 <p align="center">
   <sub>Metrics 每周日自动刷新 · 由 <a href="https://github.com/lowlighter/metrics">lowlighter/metrics</a> 生成</sub>
