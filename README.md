@@ -11,7 +11,7 @@
 
 - 🎓 中国科学技术大学（USTC）· **未来技术学院** 博士研究生
 - ⚛️ 研究方向：**物理学 / 量子算法**
-- 🧑‍🔬 [**IAI-USTC-Quantum · 量子人工智能团队**](https://github.com/IAI-USTC-Quantum)（陈昭昀团队）成员 · [团队主页 →](https://iai-ustc-quantum.github.io)
+- 🧑‍🔬 [**IAI-USTC-Quantum · 量子人工智能团队**](https://github.com/IAI-USTC-Quantum)（陈昭晇团队）成员 · [团队主页 →](https://iai-ustc-quantum.github.io)
 - 🏆 **余庆杯软件设计竞赛 · 银奖**
 
 ### 🔭 当前在做的事
@@ -28,12 +28,10 @@
 
 ---
 
-### 📆 提交节奏 · 代码习惯
+### 📆 全年贡献日历
 
 <p align="center">
-  <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" width="49%" />
-  &nbsp;
-  <img src="./metrics.plugin.habits.svg" alt="Coding Habits" width="49%" />
+  <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" />
 </p>
 
 ### 🌟 对外贡献 · 我创建的 Issue / PR
