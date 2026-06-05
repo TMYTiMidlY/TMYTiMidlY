@@ -31,17 +31,17 @@
 <table align="center" width="100%">
   <tr>
     <td width="50%" align="center" valign="top">
-      <strong>📆 全年贡献日历</strong><br/>
+      <strong>📆 1 年贡献图</strong><br/><br/>
       <img src="./metrics.plugin.isocalendar.svg" alt="365-day 3D Iso Calendar" width="100%" />
     </td>
     <td width="50%" align="center" valign="top">
-      <strong>🏷️ 对外仓库贡献</strong><br/>
+      <strong>🏷️ 社区贡献</strong><br/><br/>
       <img src="./metrics.plugin.notable.svg" alt="Notable Contributions (to other repos)" width="100%" />
     </td>
   </tr>
   <tr>
     <td colspan="2" align="center" valign="top">
-      <strong>📨 Issue 与 PR 概览</strong><br/>
+      <strong>📨 Issue 与 PR 概览</strong><br/><br/>
       <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" width="60%" />
     </td>
   </tr>

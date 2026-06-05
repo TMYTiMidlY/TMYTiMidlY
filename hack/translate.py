@@ -5,19 +5,22 @@
 git pull --rebase 拿最新 SVG，再调本脚本对所有 ``metrics*.svg`` 做替换，
 最后 commit 一次。
 
-替换分三层：
+替换分四层：
 1. ``PATTERNS``：先用正则把"数字 + 名词"模板（如 ``1886 Commits``）翻成
    中文，避免后续整词替换误伤局部子串；
 2. ``FIXED``：再把固定标题（如 ``Activity`` / ``Community stats``）替换成
    中文。包成 ``>en<`` 形式只匹配 HTML/SVG 节点内容，避免改到属性。
 3. ``EXTRA_STRIPS``：删除部分冗余 DOM 节点（如 isocalendar 内层标题，
    因为外层 README section 标题已经描述了内容，重复展示会拥挤）。
+4. ``SHRINK_HEIGHT``：按文件名裁掉 metrics SVG 下方的 padding 留白
+   （metrics 默认 declared height 比实际 content bottom 高 30-66px）。
 
-新增上游 plugin 时按需扩展三张表即可。
+新增上游 plugin 时按需扩展四张表即可。
 """
 from __future__ import annotations
 
 import glob
+import os
 import re
 import sys
 
@@ -107,7 +110,7 @@ FIXED: dict[str, str] = {
 # 必须在两层翻译之后，因为节点匹配用的是已经中文化的关键词。
 EXTRA_STRIPS: list[tuple[re.Pattern[str], str]] = [
     # 删 metrics 副卡内层 <h2> 标题：外层 README 的 section 子标题
-    # （📆 全年贡献日历 / 🏷️ 对外仓库贡献 / 📨 Issue 与 PR 概览）已经
+    # （📆 1 年贡献图 / 🏷️ 社区贡献 / 📨 Issue 与 PR 概览）已经
     # 描述了每张卡是什么，内层再来一次会视觉重复（尤其大字标题压在
     # 图主体上方挤掉版面）。
     # 用 negative lookahead 保证 .* 不越过最近的 </h2>，关键词两边都包。
@@ -123,13 +126,46 @@ EXTRA_STRIPS: list[tuple[re.Pattern[str], str]] = [
 ]
 
 
-def translate(text: str) -> str:
+# metrics 默认 SVG 的 declared height 比内容 max bottom 高 30-66px（下方
+# 留白）。这里按 basename dispatch 强制把 root <svg> 的 height + viewBox
+# 调到 content + ~10px 缓冲，浏览器渲染时多余的下方留白被裁掉。
+# 数值来自 playwright 测量：foreignObject 实际 max bottom + 10。
+# metrics 上游升级 / config 变更可能让 content 长度变化——发现底部内容
+# 被截断时回头用 /tmp/svg-probe/probe.py 重测。
+SHRINK_HEIGHT: dict[str, int] = {
+    "metrics.plugin.isocalendar.svg": 287,
+    "metrics.plugin.notable.svg": 252,
+    "metrics.plugin.followup.svg": 108,
+    "metrics.svg": 489,
+}
+
+
+def shrink_svg_height(text: str, target_h: int) -> str:
+    """把 SVG root 的 height 和 viewBox 第四个数都改成 target_h。"""
+    m = re.search(r"<svg\b[^>]*>", text)
+    if not m:
+        return text
+    tag = m.group(0)
+    new = re.sub(r'\bheight="\d+"', f'height="{target_h}"', tag, count=1)
+    new = re.sub(
+        r'\bviewBox="\s*0\s+0\s+(\d+)\s+\d+\s*"',
+        rf'viewBox="0 0 \1 {target_h}"',
+        new,
+        count=1,
+    )
+    return text[: m.start()] + new + text[m.end() :]
+
+
+def translate(text: str, path: str = "") -> str:
     for pat, rep in PATTERNS:
         text = re.sub(pat, rep, text)
     for en, zh in FIXED.items():
         text = re.sub(rf">\s*{re.escape(en)}\s*<", f">{zh}<", text)
     for strip_pat, rep in EXTRA_STRIPS:
         text = strip_pat.sub(rep, text)
+    basename = os.path.basename(path)
+    if basename in SHRINK_HEIGHT:
+        text = shrink_svg_height(text, SHRINK_HEIGHT[basename])
     return text
 
 
@@ -142,7 +178,7 @@ def main() -> int:
     for p in paths:
         with open(p, encoding="utf-8") as f:
             src = f.read()
-        out = translate(src)
+        out = translate(src, p)
         if out != src:
             with open(p, "w", encoding="utf-8") as f:
                 f.write(out)
