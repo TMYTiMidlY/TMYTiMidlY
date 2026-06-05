@@ -44,11 +44,6 @@
       <img src="./metrics.plugin.followup.svg" alt="Issues / PRs I opened" />
     </td>
   </tr>
-  <tr>
-    <td colspan="2" align="center">
-      <img src="./metrics.plugin.achievements.svg" alt="GitHub Achievements" />
-    </td>
-  </tr>
 </table>
 
 <p align="center">
